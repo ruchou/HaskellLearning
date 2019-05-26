@@ -6,7 +6,7 @@ import System.IO
 main :: IO ()
 --main = someFunc
 
---add :: Int -> Int -> Int
+add :: Int -> Int -> Int
 add x y = x + y
 
 answer = add 5 3
@@ -23,7 +23,17 @@ c = take 5 (repeat 42)
 
 --main = print(c)
 
-main = do putStr "請輸入你的名稱："
-          hFlush stdout
-          name <- getLine
-          putStrLn ("哈囉！" ++ name ++ "！")
+prompt text = do
+    putStr text
+    hFlush stdout
+
+descOddEven :: Int -> String
+descOddEven number =
+    if number `mod` 2 == 0 then "偶數" else "奇數"
+
+main = do
+    prompt "請輸入整數："
+    input <- getLine
+    let desc = descOddEven (read input::Int)
+    putStrLn (input ++ "是" ++ desc ++ "！")
+
