@@ -31,9 +31,16 @@ descOddEven :: Int -> String
 descOddEven number =
     if number `mod` 2 == 0 then "偶數" else "奇數"
 
+doubleFunc :: Float -> Float
+doubleFunc x = x * x
+
+doubleThis :: Float -> Float
+doubleThis = doubleFunc
+
 main = do
-    prompt "請輸入整數："
-    input <- getLine
-    let desc = descOddEven (read input::Int)
-    putStrLn (input ++ "是" ++ desc ++ "！")
+    print $ doubleThis $10
+--    prompt "請輸入整數："
+--    input <- getLine
+--    let desc = descOddEven (read input::Int)
+--    putStrLn (input ++ "是" ++ desc ++ "！")
 
