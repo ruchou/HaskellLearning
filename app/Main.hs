@@ -37,8 +37,19 @@ doubleFunc x = x * x
 doubleThis :: Float -> Float
 doubleThis = doubleFunc
 
+myAdd :: Int -> Int -> Int
+myAdd x y = x+y
+
+addTen = (+ 20)
+
+
 main = do
-    print $ doubleThis $10
+    let addA = myAdd 10
+    let newList = map (+ 5) [10, 20, 30, 40, 50]
+    print $ addA 20
+    print $ addTen 30
+    print newList
+
 --    prompt "請輸入整數："
 --    input <- getLine
 --    let desc = descOddEven (read input::Int)
