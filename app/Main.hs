@@ -68,7 +68,7 @@ main = do
 
 
 
-
+--    stack build --exec LearningHaskell-exe
 --    prompt "請輸入整數："
 --    input <- getLine
 --    let desc = descOddEven (read input::Int)
