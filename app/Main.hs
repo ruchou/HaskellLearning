@@ -44,6 +44,15 @@ addTen = (+ 20)
 
 getMoreThan2 = filter (>2)
 
+getElement :: [Int] ->Int -> Bool
+getElement lt ele =
+    if null $ lt then False
+    else
+        if head lt == ele then True
+        else
+            getElement (tail lt) ele
+
+
 main = do
     let addA = myAdd 10
     let newList = map (+ 5) [10, 20, 30, 40, 50]
@@ -54,7 +63,8 @@ main = do
     putStrLn "joe"
     print listMoreThan2
     putStrLn "stack build; stack exec LearningHaskell-exe"
-
+    print $ getElement newList 15
+    print $ take (5) [50..]
 
 
 
