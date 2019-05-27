@@ -42,13 +42,22 @@ myAdd x y = x+y
 
 addTen = (+ 20)
 
+getMoreThan2 = filter (>2)
 
 main = do
     let addA = myAdd 10
     let newList = map (+ 5) [10, 20, 30, 40, 50]
+    let listMoreThan2 = getMoreThan2 [1..10]
     print $ addA 20
     print $ addTen 30
     print newList
+    putStrLn "joe"
+    print listMoreThan2
+    putStrLn "stack build; stack exec LearningHaskell-exe"
+
+
+
+
 
 --    prompt "請輸入整數："
 --    input <- getLine
