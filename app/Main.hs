@@ -44,6 +44,14 @@ addTen = (+ 20)
 
 getMoreThan2 = filter (>2)
 
+myLength :: [a] -> Int
+myLength lt =
+    if null lt then 0 else 1 + (myLength $ tail $ lt )
+mySum :: [Int] -> Int
+mySum lt =
+    if null lt then 0 else (head $ lt) + (mySum $ tail $ lt)
+
+
 main = do
     let addA = myAdd 10
     let newList = map (+ 5) [10, 20, 30, 40, 50]
@@ -54,6 +62,9 @@ main = do
     putStrLn "joe"
     print listMoreThan2
     putStrLn "stack build; stack exec LearningHaskell-exe"
+    let l = [1..10]
+    print $ myLength $ l
+    print $ mySum $ l
 
 
 
