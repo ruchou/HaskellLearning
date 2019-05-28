@@ -59,6 +59,8 @@ main :: IO ()
 
 boomBangs xs = [if x < 10 then "Boom" else "Bang"| x<-xs, odd x  ]
 
+
+
 main = do
 --    let addA = myAdd 10
 --    let newList = map (+ 5) [10, 20, 30, 40, 50]
@@ -87,6 +89,9 @@ main = do
 --    print $ take 10 $ cycle [1..10]
 --    print $ [x | x <- [1..100], mod x 7 ==0]
       print $ boomBangs[7..20]
+      let zipListA = [1..10]
+      let zipListB = ['A'..'Z']
+      print $ zip zipListA zipListB
 
 
 
