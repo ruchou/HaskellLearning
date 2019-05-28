@@ -59,6 +59,8 @@ main :: IO ()
 
 boomBangs xs = [if x < 10 then "Boom" else "Bang"| x<-xs, odd x  ]
 
+factorial :: Integer -> Integer
+factorial n = product [1..n]
 
 
 main = do
@@ -88,10 +90,12 @@ main = do
 --    print $ take 24 [14,28..]
 --    print $ take 10 $ cycle [1..10]
 --    print $ [x | x <- [1..100], mod x 7 ==0]
-      print $ boomBangs[7..20]
-      let zipListA = [1..10]
-      let zipListB = ['A'..'Z']
-      print $ zip zipListA zipListB
+--      print $ boomBangs[7..20]
+--      let zipListA = [1..10]
+--      let zipListB = ['A'..'Z']
+--      print $ zip zipListA zipListB
+--      print $ factorial 100
+      read "5"::Int
 
 
 
