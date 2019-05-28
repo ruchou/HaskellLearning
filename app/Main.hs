@@ -81,6 +81,15 @@ myHead xs =
         case xs of [] -> error "No head"
                    (x:_) -> x
 
+quickSort ::(Ord a)=>[a]->[a]
+quickSort []=[]
+quickSort (x:xs)=
+        let smallerSorted = quickSort[a | a <- xs, a<=x]
+            biggerSorted = quickSort [a | a <- xs, a >x]
+        in smallerSorted ++ [x] ++ biggerSorted
+
+
+
 main = do
 --    let addA = myAdd 10
 --    let newList = map (+ 5) [10, 20, 30, 40, 50]
@@ -118,8 +127,9 @@ main = do
       let x:xs = [1..10]
       let message = calcBMis [(42,1.65),(45,1.65)]
       print $ myHead message
---      let bind_ = 10 in bind_+10
---      print bind_
+      let toSortList = [89,88..1]
+      let sortedList = quickSort toSortList
+      print sortedList
 
 
 
