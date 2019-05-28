@@ -51,7 +51,11 @@ getElement lt ele =
         else
             getElement (tail lt) ele
 
-
+is_prime :: Int -> Bool
+is_prime 1 = False
+is_prime 2 = True
+is_prime n | (length [x | x <- [2 .. n-1], mod n x == 0]) > 0 = False
+		   | otherwise = True
 
 main = do
 --    let addA = myAdd 10
@@ -70,9 +74,10 @@ main = do
 --    let listA =  map (+ 3) $ filter (> 3) [1, 2, 3, 4, 5]
     let listA = [x+3 | x <-[1..5], x >3 ]
     let triangle = [ [a,b,c] | a <-[1..20], b <-[1..20], c <- [1..20], a<=b, b<=c, a^2+b^2 == c^2 ]
-    let allPrime = [ x |  ]
+    let allPrime = [ x | x<-[1..200], is_prime x == True]
     print listA
     print triangle
+    print allPrime
 
 
 
