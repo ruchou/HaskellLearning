@@ -60,8 +60,26 @@ main :: IO ()
 boomBangs xs = [if x < 10 then "Boom" else "Bang"| x<-xs, odd x  ]
 
 factorial :: Integer -> Integer
-factorial n = product [1..n]
+factorial 0 = 1
+factorial n = n * factorial (n-1)
 
+bmiTell :: (RealFloat a) => a -> a -> String
+bmiTell weight height
+        | bmi <= 18.5 = "UnderWeight"
+        | bmi <= 25 = "Normal"
+        | bmi <= 30 = "Overweight"
+        | otherwise             = "You are a whale"
+        where bmi = weight/height^2
+
+calcBMis :: (RealFloat a)=> [(a,a)] -> [a]
+calcBMis xs =
+        [bmi w h | (w,h )<-xs]
+        where bmi weight height = weight/height^2
+
+myHead :: [a]->a
+myHead xs =
+        case xs of [] -> error "No head"
+                   (x:_) -> x
 
 main = do
 --    let addA = myAdd 10
@@ -95,7 +113,14 @@ main = do
 --      let zipListB = ['A'..'Z']
 --      print $ zip zipListA zipListB
 --      print $ factorial 100
-      read "5"::Int
+--      read "5"::Int
+      print $ factorial 10
+      let x:xs = [1..10]
+      let message = calcBMis [(42,1.65),(45,1.65)]
+      print $ myHead message
+--      let bind_ = 10 in bind_+10
+--      print bind_
+
 
 
 
