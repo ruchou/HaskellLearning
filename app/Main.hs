@@ -101,13 +101,27 @@ largestDivisible :: (Integral a) => a
 largestDivisible = head (filter p [100000, 999999..])
     where p x = (x `mod` 3829) == 0
 
+-- the sum of all odd squares that are smaller than 10,000.
+oddSquareSum :: Integer
+--oddSquareSum = sum (takeWhile (<10000) (filter odd (map (^2) [1..])))
+--oddSquareSum = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]
+oddSquareSum =
+    let oddSquares = filter odd $ map (^2) [1..]
+        belowLimit = takeWhile (<10000) oddSquares
+    in  sum belowLimit
 
 main = do
-      print $ compareWithHundred 101
-      print $ applyTwice (*2) 10
-      print $ flip' zip [1,2,3,4,5] "hello"
-      print largestDivisible
-      print (map (\x -> x+1) [1..10])
+--      print $ compareWithHundred 101
+--      print $ applyTwice (*2) 10
+--      print $ flip' zip [1,2,3,4,5] "hello"
+--      print largestDivisible
+--      print (map (\x -> x+1) [1..10])
+--      print $ scanl (+) 0 [1..20]
+      let myList = [[1..5],[3..6],[1..7]]
+      print $ map (\ xs -> negate (sum (tail xs))) myList
+      print $ map (negate . sum . tail) myList
+      print oddSquareSum
+
 
 
 
