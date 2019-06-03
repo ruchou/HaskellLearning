@@ -88,6 +88,14 @@ quickSort (x:xs)=
             biggerSorted = quickSort [a | a <- xs, a >x]
         in smallerSorted ++ [x] ++ biggerSorted
 
+queens :: Int -> [[Int]]
+queens n = filter test (generate n)
+    where generate 0      = [[]]
+          generate k      = [q : qs | q <- [1..n], qs <- generate (k-1)]
+          test []         = True
+          test (q:qs)     = isSafe q qs && test qs
+          isSafe   try qs = not (try `elem` qs || sameDiag try qs)
+          sameDiag try qs = any (\(colDist,q) -> abs (try - q) == colDist) $ zip [1..] qs
 
 
 main = do
@@ -123,19 +131,15 @@ main = do
 --      print $ zip zipListA zipListB
 --      print $ factorial 100
 --      read "5"::Int
-      print $ factorial 10
-      let x:xs = [1..10]
-      let message = calcBMis [(42,1.65),(45,1.65)]
-      print $ myHead message
-      let toSortList = [89,88..1]
-      let sortedList = quickSort toSortList
-      print sortedList
+--      print $ factorial 10
+--      let x:xs = [1..10]
+--      let message = calcBMis [(42,1.65),(45,1.65)]
+--      print $ myHead message
+--      let toSortList = [89,88..1]
+--      let sortedList = quickSort toSortList
+--      print sortedList
 
-
-
-
-
-
+      print $ length $ queens 8
 
 
 --    stack build --exec LearningHaskell-exe
