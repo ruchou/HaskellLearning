@@ -88,58 +88,47 @@ quickSort (x:xs)=
             biggerSorted = quickSort [a | a <- xs, a >x]
         in smallerSorted ++ [x] ++ biggerSorted
 
-queens :: Int -> [[Int]]
-queens n = filter test (generate n)
-    where generate 0      = [[]]
-          generate k      = [q : qs | q <- [1..n], qs <- generate (k-1)]
-          test []         = True
-          test (q:qs)     = isSafe q qs && test qs
-          isSafe   try qs = not (try `elem` qs || sameDiag try qs)
-          sameDiag try qs = any (\(colDist,q) -> abs (try - q) == colDist) $ zip [1..] qs
+compareWithHundred :: (Num a, Ord a) =>a -> Ordering
+compareWithHundred = compare 100
 
+applyTwice :: (a -> a) -> a -> a
+applyTwice f x = f (f x)
+
+flip' :: (a -> b -> c) -> b -> a -> c
+flip' f y x = f x y
+
+largestDivisible :: (Integral a) => a
+largestDivisible = head (filter p [100000, 999999..])
+    where p x = (x `mod` 3829) == 0
+
+-- the sum of all odd squares that are smaller than 10,000.
+oddSquareSum :: Integer
+--oddSquareSum = sum (takeWhile (<10000) (filter odd (map (^2) [1..])))
+--oddSquareSum = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]
+oddSquareSum =
+    let oddSquares = filter odd $ map (^2) [1..]
+        belowLimit = takeWhile (<10000) oddSquares
+    in  sum belowLimit
 
 main = do
---    let addA = myAdd 10
---    let newList = map (+ 5) [10, 20, 30, 40, 50]
---    let listMoreThan2 = getMoreThan2 [1..10]
---    print $ addA 20
---    print $ addTen 30
---    print newList
---    putStrLn "joe"
---    print listMoreThan2
---    putStrLn "stack build; stack exec LearningHaskell-exe"
---    print $ getElement newList 15
---    print $ take (5) [50..]
---    print $ take  5 $ repeat 9
---    print $ take 5 [5,10 ..]
---    let listA =  map (+ 3) $ filter (> 3) [1, 2, 3, 4, 5]
---    let listA = [x+3 | x <-[1..5], x >3 ]
---    let triangle = [ [a,b,c] | a <-[1..20], b <-[1..20], c <- [1..20], a<=b, b<=c, a^2+b^2 == c^2 ]
---    let allPrime = [ x | x<-[1..200], is_prime x == True]
---    print listA
---    print triangle
---    print allPrime
---    let myList = [1..10]++[90..100]
---    print $ myList !! 4
---    print $ sum myList
---    print $ take 24 [14,28..]
---    print $ take 10 $ cycle [1..10]
---    print $ [x | x <- [1..100], mod x 7 ==0]
---      print $ boomBangs[7..20]
---      let zipListA = [1..10]
---      let zipListB = ['A'..'Z']
---      print $ zip zipListA zipListB
---      print $ factorial 100
---      read "5"::Int
---      print $ factorial 10
---      let x:xs = [1..10]
---      let message = calcBMis [(42,1.65),(45,1.65)]
---      print $ myHead message
---      let toSortList = [89,88..1]
---      let sortedList = quickSort toSortList
---      print sortedList
+--      print $ compareWithHundred 101
+--      print $ applyTwice (*2) 10
+--      print $ flip' zip [1,2,3,4,5] "hello"
+--      print largestDivisible
+--      print (map (\x -> x+1) [1..10])
+--      print $ scanl (+) 0 [1..20]
+      let myList = [[1..5],[3..6],[1..7]]
+      print $ map (\ xs -> negate (sum (tail xs))) myList
+      print $ map (negate . sum . tail) myList
+      print oddSquareSum
 
-      print $ length $ queens 8
+
+
+
+
+
+
+
 
 
 --    stack build --exec LearningHaskell-exe
