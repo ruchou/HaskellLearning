@@ -7,6 +7,9 @@ import Data.List
 
 main :: IO ()
 
+plusOne :: Int -> Int
+plusOne = (+1)
+
 main = do
       let myList = "monkey"
       print . intersperse '.'  $ myList
@@ -21,6 +24,7 @@ main = do
       print $ span (<3) [1..20]
       print $ map (\l@(x:xs)->(x,length l)) . group . sort $ [1,1,1,1,2,2,2,2,3,3,2,2,2,5,6,7]
       print $ intersect [1..10] [5..8]
+      print $ plusOne 10
 
 
 
