@@ -25,10 +25,18 @@ fibonacciLt n = [fibonacci x | x <- [0 .. n]]
               | n == 1 = 1
               | otherwise = fibonacci (n-1) + fibonacci(n-2)
 
+isRightTriangle :: Float -> Float -> Float -> Bool
+isRightTriangle = \a -> \b -> \c -> a**2+b**2 == c**2
+
+showAbsSumOf :: [Int] -> String
+showAbsSumOf = show . abs . sum
 
 main :: IO ()
 main = do
     print $ fibonacciLt 10
+    print $ isRightTriangle 3 4 5
+    print $ showAbsSumOf [-3..10]
+
 
 
 
