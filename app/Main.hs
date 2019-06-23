@@ -15,11 +15,20 @@ fibonacci n
     | n==1 = 1
     | otherwise = fibonacci (n-1) + fibonacci (n-2)
 
+--check :: Bool -> String
+--check isTrue = case isTrue of True -> "Yes"
+--                              False -> "No"
+fibonacciLt :: Int -> [Int]
+fibonacciLt n = [fibonacci x | x <- [0 .. n]]
+    where fibonacci n
+              | n == 0 = 0
+              | n == 1 = 1
+              | otherwise = fibonacci (n-1) + fibonacci(n-2)
+
+
 main :: IO ()
 main = do
-    let ten = fibonacci 10
-    print ten
-
+    print $ fibonacciLt 10
 
 
 
