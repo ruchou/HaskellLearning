@@ -11,13 +11,9 @@ reverseWords = unwords . map reverse . words
 
 main :: IO ()
 main = do
-    line <- getLine
-    if null line
-        then return ()
-    else
-        do
-            putStrLn $ reverseWords line
-            main
+    a <- return "hello"
+    b <- return "world"
+    print $ a ++ " " ++ b
 
 
 
