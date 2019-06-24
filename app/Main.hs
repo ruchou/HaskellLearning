@@ -31,10 +31,17 @@ isRightTriangle = \a -> \b -> \c -> a**2+b**2 == c**2
 showAbsSumOf :: [Int] -> String
 showAbsSumOf = show . abs . sum
 
+
+data People = People Int
+
 main :: IO ()
 main = do
+    let bill = People 20
     print $ fibonacciLt 10
     print $ isRightTriangle 3 4 5
     print $ showAbsSumOf [-3..10]
+
+
+
 
 
