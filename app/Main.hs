@@ -30,6 +30,3 @@ main = do
       print bill
       g <- getStdGen
 
-
-
-
