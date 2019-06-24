@@ -44,13 +44,17 @@ password person = lookupUsers [("bill","1234")]
                         if name == person then Just passwd
                          else lookupUsers xs
 
+quickSort:: [Int] -> [Int]
+quickSort [] = []
+quickSort (x:xs) = quickSort small ++ [x] ++ quickSort large
+                where small = [y | y <-xs, y < x]
+                      large = [y | y <-xs , y>=x]
+
 
 main :: IO ()
-main = do putStr "請輸入你的名稱："
-          hFlush stdout
-          person <- getLine
-          putStrLn $ case password person of Nothing     -> "查無此人"
-                                             Just passwd -> passwd
+main = do
+        let myList = [3,7,3,2,3,9,10,5,2,8]
+        print $ quickSort myList
 
 
 
