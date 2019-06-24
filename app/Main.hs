@@ -44,6 +44,12 @@ password person = lookupUsers [("bill","1234")]
                         if name == person then Just passwd
                          else lookupUsers xs
 
+class Comp a
+        where comp:: a -> a -> Integer
+
+instance Comp Integer
+        where comp x y = x - y
+
 quickSort:: [Int] -> [Int]
 quickSort [] = []
 quickSort (x:xs) = quickSort small ++ [x] ++ quickSort large
