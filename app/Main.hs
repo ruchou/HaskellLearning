@@ -31,17 +31,26 @@ isRightTriangle = \a -> \b -> \c -> a**2+b**2 == c**2
 showAbsSumOf :: [Int] -> String
 showAbsSumOf = show . abs . sum
 
+swap :: (a,b)->(b,a)
+swap (a,b) = (b,a)
 
-data People = People Int
+
+
+password :: String -> Maybe String
+password person = lookupUsers [("bill","1234")]
+        where
+                lookupUsers [] = Nothing
+                lookupUsers ((name, passwd):xs) =
+                        if name == person then Just passwd
+                         else lookupUsers xs
+
 
 main :: IO ()
-main = do
-    let bill = People 20
-    print $ fibonacciLt 10
-    print $ isRightTriangle 3 4 5
-    print $ showAbsSumOf [-3..10]
-
-
+main = do putStr "請輸入你的名稱："
+          hFlush stdout
+          person <- getLine
+          putStrLn $ case password person of Nothing     -> "查無此人"
+                                             Just passwd -> passwd
 
 
 
