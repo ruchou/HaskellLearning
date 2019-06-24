@@ -56,11 +56,18 @@ quickSort (x:xs) = quickSort small ++ [x] ++ quickSort large
                 where small = [y | y <-xs, y < x]
                       large = [y | y <-xs , y>=x]
 
+data Rectangle = Rec {
+                        x::Int
+                       ,y::Int
+                       ,width::Int
+                       ,height::Int
+                       } deriving Show
+
 
 main :: IO ()
 main = do
-        let myList = [3,7,3,2,3,9,10,5,2,8]
-        print $ quickSort myList
+        let myRect = Rec 2 3 4 5
+        print$ myRect
 
 
 
