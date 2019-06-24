@@ -6,27 +6,35 @@ import Data.List
 
 --import Data.List (nub, sort, intersperse, group)
 
-data Shape = Circle Float Float Float | Rectangle Float Float Float Float deriving(Show)
+--reverseWords :: String -> String
+--reverseWords = unwords . map reverse . words
 
-surface :: Shape -> Float
-surface (Circle _ _ r) = pi*r^2
-surface (Rectangle x1 y1 x2 y2) = (abs $ x2-x1) * ( abs $ y2 -y1)
+fibonacci :: Int -> Int
+fibonacci n
+    | n==0 = 0
+    | n==1 = 1
+    | otherwise = fibonacci (n-1) + fibonacci (n-2)
 
-data Person = Person {
-                        firstName :: String,
-                        lastName :: String,
-                        age :: Int
-                        } deriving(Show)
+--check :: Bool -> String
+--check isTrue = case isTrue of True -> "Yes"
+--                              False -> "No"
+fibonacciLt :: Int -> [Int]
+fibonacciLt n = [fibonacci x | x <- [0 .. n]]
+    where fibonacci n
+              | n == 0 = 0
+              | n == 1 = 1
+              | otherwise = fibonacci (n-1) + fibonacci(n-2)
+
+isRightTriangle :: Float -> Float -> Float -> Bool
+isRightTriangle = \a -> \b -> \c -> a**2+b**2 == c**2
+
+showAbsSumOf :: [Int] -> String
+showAbsSumOf = show . abs . sum
 
 main :: IO ()
-
 main = do
-      let myList = "monkey"
-      let myCircle =  Circle 10 20 10
-      print myCircle
-      print $ surface $  Circle 10 20 10
+    print $ fibonacciLt 10
+    print $ isRightTriangle 3 4 5
+    print $ showAbsSumOf [-3..10]
 
-      let bill = Person "Yan-Ru" "Jhou" 10
-      print bill
-      g <- getStdGen
 
