@@ -6,28 +6,20 @@ import Data.List
 import MyModule
 import Text.Printf
 import Control.Monad
+import Data.List
+import Control.Exception
 
-echoUntil :: String -> IO()
-echoUntil str = do
-        input <- getLine
-        if input /= str
-            then do
-                putStrLn (">> " ++ input)
-                echoUntil str
-            else
-                return ()
 
-echo :: IO()
-echo = do
-        when True $ do
-                input <- getLine
-                putStrLn $ ">>"++input
-                echo
-
+myHead :: [a] -> Either String a
+myHead [] = Left "an empty list has no head .. XD"
+myHead (x:xs) = Right x
 
 main :: IO ()
 main = do
-        echo
+    result <- try ( return $ head [])
+    case result :: Either SomeException Int of
+            Left ex -> putStrLn $ "exception"
+            Right ele -> putStrLn . show $ ele
 
 
 
