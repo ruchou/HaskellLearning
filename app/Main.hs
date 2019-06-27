@@ -16,7 +16,7 @@ myHead (x:xs) = Right x
 
 main :: IO ()
 main = do
-    result <- try ( return $ head [])
+    result <- try (  evaluate $ head [])
     case result :: Either SomeException Int of
             Left ex -> putStrLn $ "exception"
             Right ele -> putStrLn . show $ ele
