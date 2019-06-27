@@ -5,7 +5,7 @@ import System.IO
 import Data.List
 import MyModule
 import Text.Printf
-
+import Control.Monad
 
 echoUntil :: String -> IO()
 echoUntil str = do
@@ -17,10 +17,17 @@ echoUntil str = do
             else
                 return ()
 
+echo :: IO()
+echo = do
+        when True $ do
+                input <- getLine
+                putStrLn $ ">>"++input
+                echo
+
 
 main :: IO ()
 main = do
-        echoUntil "test"
+        echo
 
 
 
