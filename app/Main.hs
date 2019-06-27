@@ -6,22 +6,17 @@ import Control.Exception
 import System.Environment
 import System.IO
 
+myTry :: Exception e => IO a -> IO (Either e a)
+myTry a = catch toEither (return . Left)
+        where toEither = do
+                r <- a
+                return (Right r)
+
+
 
 main :: IO ()
-main = catch
-        ( do
-                (fileName:_) <- getArgs
-                contents <- readFile fileName
-                putStrLn contents
-        )
-        (\(SomeException e) -> do print $ typeOf e
-                                  print  e
-        )
-
-
-
-
-
-
-
-
+main = do
+        result <- myTry $ evaluate $ head []
+        case result :: Either SomeException Int of
+                Left ex -> putStrLn "exception"
+                Right ele -> putStrLn $ show ele
