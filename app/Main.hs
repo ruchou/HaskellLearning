@@ -17,8 +17,3 @@ main = catch
         (\(SomeException e) -> do print $ typeOf e
                                   print  e
         )
-
-
-
-
-
