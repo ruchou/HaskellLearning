@@ -7,12 +7,15 @@ import System.Environment
 import System.IO
 
 
-myLast :: [a] -> a
-myLast [] = error "this is an error"
-myLast (x:[]) = x
-myLast (x:xs) = myLast xs
+data ListException = EmptyListException String deriving (Show, Typeable)
+
+instance Exception ListException
+
+init' :: [a] ->  [a]
+init' [] = throw $ EmptyListException "an empty list has no init"
+init' (x:[]) = []
+init' (x:xs) = x : init' xs
 
 main :: IO ()
 main = do
-        let ele = myLast [1..10]
-        putStrLn . show $ ele
+       init' []
