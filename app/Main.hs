@@ -7,6 +7,8 @@ import System.Environment
 import System.IO
 import MyModule
 
+
+
 main :: IO ()
 main = do
        let m1 = fmap (+1) (Just 3)
@@ -15,5 +17,3 @@ main = do
        myPrint m3
        let m4 = fmap (show . (*3) . (+1)) (Just 3)
        myPrint m4
-
-
