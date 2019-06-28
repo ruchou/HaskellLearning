@@ -5,11 +5,7 @@ import Prelude hiding (catch)
 import Control.Exception
 import System.Environment
 import System.IO
-
-myPrint :: Show a => Maybe a -> IO ()
-myPrint (Just x) = print x
-myPrint n        = print n
-
+import MyModule
 
 main :: IO ()
 main = do
