@@ -7,8 +7,6 @@ import System.Environment
 import System.IO
 import MyModule
 
-
-
 main :: IO ()
 main = do
        let m1 = fmap (+1) (Just 3)
