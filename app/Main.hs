@@ -6,12 +6,15 @@ import Control.Exception
 import System.Environment
 import System.IO
 import MyModule
+import Control.Applicative
 
 main :: IO ()
 main = do
-       let m1 = fmap (+1) (Just 3)
-       let m2 = fmap (*3) m1
-       let m3 = fmap show m2
-       myPrint m3
-       let m4 = fmap (show . (*3) . (+1)) (Just 3)
-       myPrint m4
+       let a = ["1234","4567","12389"]
+       let b = ["joe","bill","cartier"]
+       let a_b = (++) <$> a <*> b
+       print $ a_b
+       let fs = pure (+) <*> [1..5]
+       print $ fs <*> [10..15]
+       let myList = filter (>6) $ (+) <$> [1..3] <*> [1..6]
+       print myList
