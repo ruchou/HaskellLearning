@@ -8,9 +8,17 @@ import System.IO
 import MyModule
 import Control.Applicative
 
-newtype ZipLt a = ZipLt [a] deriving (Show)
+
+
+account :: Maybe String -> Maybe Int -> Maybe String
+account maybeName maybeBirth = do
+    name <- maybeName
+    birth <- maybeBirth
+    return (name ++ (show birth))
 
 main :: IO ()
-main =
-    (getLine >>= (\name->putStrLn name))
+main = do
+    let name ="bill"
+    let number = 10
+    print $ account (Just name) (Just number)
 
