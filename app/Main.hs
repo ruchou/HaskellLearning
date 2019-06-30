@@ -11,6 +11,6 @@ import Control.Applicative
 newtype ZipLt a = ZipLt [a] deriving (Show)
 
 main :: IO ()
-main = do
-       let x - ZipLt [1,2]
-       
+main =
+    (getLine >>= (\name->putStrLn name))
+
