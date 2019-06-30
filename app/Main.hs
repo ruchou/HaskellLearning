@@ -8,7 +8,9 @@ import System.IO
 import MyModule
 import Control.Applicative
 
+newtype ZipLt a = ZipLt [a] deriving (Show)
+
 main :: IO ()
 main = do
-       let a = (:) <$> Just 1 <*> Just [2..3]
-       print a
+       let x - ZipLt [1,2]
+       
