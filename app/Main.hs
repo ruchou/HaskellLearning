@@ -8,17 +8,14 @@ import System.IO
 import MyModule
 import Control.Applicative
 
-
-
-account :: Maybe String -> Maybe Int -> Maybe String
-account maybeName maybeBirth = do
-    name <- maybeName
-    birth <- maybeBirth
-    return (name ++ (show birth))
+foo :: Maybe String
+foo = do
+    x <- Just 3
+    y <- Just "!"
+    Just (show x ++ y)
 
 main :: IO ()
 main = do
-    let name ="bill"
-    let number = 10
-    print $ account (Just name) (Just number)
+    let (Just val) = foo
+    putStrLn $ val
 
